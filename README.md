@@ -78,8 +78,8 @@ Para executar os testes, utilize o comando, na raiz do projeto:
 $ composer test
 ```
 
-[icon-travisci]: https://img.shields.io/travis/liveecommerce/php-test.svg?style=flat-square
-[icon-codecov]: https://img.shields.io/codecov/c/github/liveecommerce/php-test.svg?style=flat-square
+[icon-travisci]: https://travis-ci.com/DiogoPachecoPereira/php-test.svg?branch=master
+[icon-codecov]: https://codecov.io/gh/DiogoPachecoPereira/php-test/branch/master/graph/badge.svg
 
-[link-travisci]: https://travis-ci.org/liveecommerce/php-test
-[link-codecov]: https://codecov.io/gh/liveecommerce/php-test
+[link-travisci]: https://travis-ci.com/github/DiogoPachecoPereira/php-test
+[link-codecov]: https://codecov.io/gh/DiogoPachecoPereira/php-test
