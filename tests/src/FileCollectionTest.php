@@ -132,6 +132,21 @@ class FileCollectionTest extends TestCase
 
         $this->assertEquals('resolve', $collection->get('index2', 'defaultValue'));
         $this->assertEquals(3, $collection->count());
+    }
+
+    /**
+     * @test
+     * @depends dataCanBeAdded
+     */
+    public function shouldReturnAnExistingIndex()
+    {
+        $collection = new FileCollection();
+        $collection->set('index1', 'value', 60);
+        $collection->set('index2', 5, 60);
+
+        $this->assertTrue($collection->has('index1'));
+        $this->assertFalse($collection->has('index20'));
+
         $collection->clean();
     }
 }

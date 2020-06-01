@@ -135,4 +135,20 @@ class MemoryCollectionTest extends TestCase
         $this->assertEquals(3, $collection->count());
         $collection->clean();
     }
+
+    /**
+     * @test
+     * @depends dataCanBeAdded
+     */
+    public function shouldReturnAnExistingIndex()
+    {
+        $collection = new MemoryCollection();
+        $collection->set('index1', 'value', 60);
+        $collection->set('index2', 5, 60);
+
+        $this->assertTrue($collection->has('index1'));
+        $this->assertFalse($collection->has('index20'));
+
+        $collection->clean();
+    }
 }
