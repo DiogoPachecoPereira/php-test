@@ -45,6 +45,18 @@ class FileCollectionTest extends TestCase
 
     /**
      * @test
+     * @depends dataCanBeAdded
+     */
+    public function arrayValueMustBeFormated()
+    {
+        $collection = new FileCollection();
+        $collection->set('index1', ['value1', 'value2'], 10);
+
+        $this->assertEquals('value1;value2', $collection->get('index1'));
+    }
+
+    /**
+     * @test
      * @depends objectCanBeConstructed
      */
     public function inexistentIndexShouldReturnDefaultValue()
