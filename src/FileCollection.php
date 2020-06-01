@@ -38,7 +38,13 @@ class FileCollection implements CollectionInterface
             return $defaultValue;
         }
 
-        $data = $this->format();
+        $data = file($this->filepath);
+
+        $map = function ($value) {
+            return explode("|", $value);
+        };
+
+        $data = array_map($map, $data);
 
         $key = array_search($index, array_column($data, 0));
 
@@ -60,7 +66,13 @@ class FileCollection implements CollectionInterface
             $value = implode(";", $value);
         }
 
-        $cache = $this->format();
+        $cache = file($this->filepath);
+
+        $map = function ($value) {
+            return explode("|", $value);
+        };
+
+        $cache = array_map($map, $cache);
 
         $data = array($index, $value, $expiresIn, "\n");
 
@@ -87,7 +99,13 @@ class FileCollection implements CollectionInterface
      */
     public function has(string $index)
     {
-        $data = $this->format();
+        $data = file($this->filepath);
+
+        $map = function ($value) {
+            return explode("|", $value);
+        };
+
+        $data = array_map($map, $data);
 
         $key = array_search($index, array_column($data, 0));
 
@@ -99,7 +117,8 @@ class FileCollection implements CollectionInterface
      */
     public function count(): int
     {
-        return count($this->format());
+        $data = file($this->filepath);
+        return count($data);
     }
 
     /**
@@ -108,23 +127,5 @@ class FileCollection implements CollectionInterface
     public function clean()
     {
         file_put_contents($this->filepath, "");
-    }
-
-    /**
-     * Read and format file data
-     * @return array
-     */
-
-    private function format()
-    {
-        $data = file($this->filepath);
-
-        $map = function ($value) {
-            return explode("|", $value);
-        };
-
-        $data = array_map($map, $data);
-
-        return $data;
     }
 }
