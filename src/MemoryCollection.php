@@ -33,7 +33,7 @@ class MemoryCollection implements CollectionInterface
             return $defaultValue;
         }
 
-        if(time() > $this->data[$index]['expiresIn']){
+        if (time() > $this->data[$index]['expiresIn']) {
             return null;
         }
 
@@ -43,7 +43,7 @@ class MemoryCollection implements CollectionInterface
     /**
      * {@inheritDoc}
      */
-    public function set(string $index, $value, $expiresIn=30)
+    public function set(string $index, $value, $expiresIn = 30)
     {
         $this->data[$index]['value'] = $value;
         $this->data[$index]['expiresIn'] = time() + $expiresIn;

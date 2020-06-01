@@ -10,6 +10,11 @@ namespace Live\Collection;
 
 class FileCollection implements CollectionInterface
 {
+    /**
+     * 
+     * @var string filepath
+     * @var resource type stream file
+     */
     private $filepath;
     private $file;
 
@@ -18,7 +23,7 @@ class FileCollection implements CollectionInterface
      */
     public function __construct()
     {
-        $this->filepath = dirname(__FILE__) . "\arquivo.txt";
+        $this->filepath = "arquivo.txt";
         $this->file = fopen($this->filepath, "w+");
     }
 
@@ -102,6 +107,11 @@ class FileCollection implements CollectionInterface
     {
         file_put_contents($this->filepath, "");
     }
+
+    /**
+     * Read and format file data
+     * @return array
+     */
 
     private function getData()
     {
