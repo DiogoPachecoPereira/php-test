@@ -31,7 +31,7 @@ class MemoryCollectionTest extends TestCase
         $collection->set('index5', ['data']);
     }
 
-     /**
+    /**
      * @test
      * @depends dataCanBeAdded
      */
@@ -115,6 +115,24 @@ class MemoryCollectionTest extends TestCase
         $collection->set('index', 'value', 0);
         sleep(0.5);
         $this->assertEquals('defaultValue', $collection->get('index1', 'defaultValue'));
+        $collection->clean();
+    }
+
+    /**
+     * @test
+     * @depends dataCanBeAdded
+     */
+    public function shouldUpdateFile()
+    {
+        $collection = new MemoryCollection();
+        $collection->set('index1', 'value', 60);
+        $collection->set('index2', 5, 60);
+        $collection->set('index3', true, 60);
+
+        $collection->set('index2', "resolve", 60);
+
+        $this->assertEquals('resolve', $collection->get('index2', 'defaultValue'));
+        $this->assertEquals(3, $collection->count());
         $collection->clean();
     }
 }

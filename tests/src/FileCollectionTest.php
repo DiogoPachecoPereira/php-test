@@ -24,9 +24,9 @@ class FileCollectionTest extends TestCase
     public function dataCanBeAdded()
     {
         $collection = new FileCollection();
-        $collection->set("index0", 'valor', 10);
+        $collection->set("index0", 'valor');
         $collection->set("index1", 5, 10);
-        $collection->set("index2", true, 10);
+        $collection->set("index2", true);
         $collection->set("index3", 6.5, 10);
         $collection->set("index4", ['value1', 'value2', 'value3'], 10);
     }
@@ -114,6 +114,24 @@ class FileCollectionTest extends TestCase
         $collection->set('index', 'value', 0);
         sleep(0.5);
         $this->assertEquals('defaultValue', $collection->get('index1', 'defaultValue'));
+        $collection->clean();
+    }
+
+    /**
+     * @test
+     * @depends dataCanBeAdded
+     */
+    public function shouldUpdateFile()
+    {
+        $collection = new FileCollection();
+        $collection->set('index1', 'value', 60);
+        $collection->set('index2', 5, 60);
+        $collection->set('index3', true, 60);
+
+        $collection->set('index2', "resolve", 60);
+
+        $this->assertEquals('resolve', $collection->get('index2', 'defaultValue'));
+        $this->assertEquals(3, $collection->count());
         $collection->clean();
     }
 }
