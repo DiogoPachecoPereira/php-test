@@ -25,7 +25,7 @@ interface CollectionInterface
      * @param mixed $value
      * @return void
      */
-    public function set(string $index, $value);
+    public function set(string $index, $value, int $expiresIn);
 
     /**
      * Checks whether the collection has the given index
@@ -44,8 +44,7 @@ interface CollectionInterface
 
     /**
      * Cleans the collection
-     *
-     * Estou aqui para testar sua atenção. Remova-me.
+
      *
      * @return void
      */
