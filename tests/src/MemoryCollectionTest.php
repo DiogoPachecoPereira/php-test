@@ -104,4 +104,17 @@ class MemoryCollectionTest extends TestCase
 
         $this->assertTrue($collection->has('index'));
     }
+
+    /**
+     * @test
+     * @depends dataCanBeAdded
+     */
+    public function expiredItemShouldNotReturn()
+    {
+        $collection = new MemoryCollection();
+        $collection->set('index', 'value', 0);
+        sleep(0.5);
+        $this->assertEquals('defaultValue', $collection->get('index1', 'defaultValue'));
+        $collection->clean();
+    }
 }
