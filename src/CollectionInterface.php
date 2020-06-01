@@ -23,6 +23,7 @@ interface CollectionInterface
      *
      * @param string $index
      * @param mixed $value
+     * @param integer $expiresIn
      * @return void
      */
     public function set(string $index, $value, int $expiresIn);

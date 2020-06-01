@@ -11,11 +11,13 @@ namespace Live\Collection;
 class FileCollection implements CollectionInterface
 {
     /**
-     * 
-     * @var string filepath
-     * @var resource type stream file
+     * @var string
      */
     private $filepath;
+
+    /**
+     * @var bool|resource
+     */
     private $file;
 
     /**
@@ -36,7 +38,7 @@ class FileCollection implements CollectionInterface
             return $defaultValue;
         }
 
-        $data = $this->getData();
+        $data = $this->format();
 
         $key = array_search($index, array_column($data, 0));
 
@@ -58,7 +60,7 @@ class FileCollection implements CollectionInterface
             $value = implode(";", $value);
         }
 
-        $cache = $this->getData();
+        $cache = $this->format();
 
         $data = array($index, $value, $expiresIn, "\n");
 
@@ -85,7 +87,7 @@ class FileCollection implements CollectionInterface
      */
     public function has(string $index)
     {
-        $data = $this->getData();
+        $data = $this->format();
 
         $key = array_search($index, array_column($data, 0));
 
@@ -97,7 +99,7 @@ class FileCollection implements CollectionInterface
      */
     public function count(): int
     {
-        return count($this->getData());
+        return count($this->format());
     }
 
     /**
@@ -113,7 +115,7 @@ class FileCollection implements CollectionInterface
      * @return array
      */
 
-    private function getData()
+    private function format()
     {
         $data = file($this->filepath);
 
