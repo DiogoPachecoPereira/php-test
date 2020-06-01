@@ -111,10 +111,8 @@ class FileCollectionTest extends TestCase
     public function expiredItemShouldNotReturn()
     {
         $collection = new FileCollection();
-        $collection->set('index', 'value', 0);
-        sleep(0.5);
-        $this->assertEquals('defaultValue', $collection->get('index1', 'defaultValue'));
-        $collection->clean();
+        $collection->set('index', 'value', -10);
+        $this->assertNull($collection->get('index', 'defaultValue'));
     }
 
     /**

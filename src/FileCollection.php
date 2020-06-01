@@ -49,7 +49,7 @@ class FileCollection implements CollectionInterface
         $key = array_search($index, array_column($data, 0));
 
         if (time() > $data[$key][2]) {
-            return $defaultValue;
+            return null;
         }
 
         return $data[$key][1];

@@ -112,10 +112,8 @@ class MemoryCollectionTest extends TestCase
     public function expiredItemShouldNotReturn()
     {
         $collection = new MemoryCollection();
-        $collection->set('index', 'value', 0);
-        sleep(0.5);
-        $this->assertEquals('defaultValue', $collection->get('index1', 'defaultValue'));
-        $collection->clean();
+        $collection->set('index', 'value', -10);
+        $this->assertNull($collection->get('index'));
     }
 
     /**
@@ -133,7 +131,6 @@ class MemoryCollectionTest extends TestCase
 
         $this->assertEquals('resolve', $collection->get('index2', 'defaultValue'));
         $this->assertEquals(3, $collection->count());
-        $collection->clean();
     }
 
     /**
